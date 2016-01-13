@@ -1,0 +1,114 @@
+/* css 重置 */
+#content{padding:10px 0;overflow:hidden;width:980px;margin:0 auto;}
+
+/* 图片滚动-上css */
+.picScroll-top{margin:0 auto;width:210px;overflow:hidden;position:relative;border:1px solid #ccc;}
+.picScroll-top .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.picScroll-top .hd .prev,.picScroll-top .hd .next{display:block;width:9px;height:5px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;background:url("../images/arrow.png") 0 -100px no-repeat;}
+.picScroll-top .hd .next{background-position:0 -140px;}
+.picScroll-top .hd .prevStop{background-position:-60px -100px;}
+.picScroll-top .hd .nextStop{background-position:-60px -140px;}
+.picScroll-top .hd ul{float:right;overflow:hidden;zoom:1;margin-top:10px;zoom:1;}
+.picScroll-top .hd ul li{float:left;width:9px;height:9px;overflow:hidden;margin-right:5px;text-indent:-999px;cursor:pointer;background:url("../images/icoCircle.gif") 0 -9px no-repeat;}
+.picScroll-top .hd ul li.on{background-position:0 0;}
+.picScroll-top .bd{padding:10px;}
+.picScroll-top .bd ul{overflow:hidden;zoom:1;}
+.picScroll-top .bd ul li{text-align:center;zoom:1;}
+.picScroll-top .bd ul li .pic{text-align:center;}
+.picScroll-top .bd ul li .pic img{width:180px;height:90px;display:block;padding:2px;border:1px solid #ccc;}
+.picScroll-top .bd ul li .pic a:hover img{border-color:#999;}
+.picScroll-top .bd ul li .title{line-height:24px;}
+
+/* 图片无缝滚动-左css */
+.picMarquee-left{overflow:hidden;position:relative;border:1px solid #ccc;}
+.picMarquee-left .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.picMarquee-left .hd .prev,.picMarquee-left .hd .next{display:block;width:5px;height:9px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;background:url("../images/arrow.png") no-repeat;}
+.picMarquee-left .hd .next{background-position:0 -50px;}
+.picMarquee-left .hd .prevStop{background-position:-60px 0;}
+.picMarquee-left .hd .nextStop{background-position:-60px -50px;}
+.picMarquee-left .bd{padding:10px;}
+.picMarquee-left .bd ul{overflow:hidden;zoom:1;}
+.picMarquee-left .bd ul li{margin:0 8px;float:left;_display:inline;overflow:hidden;text-align:center;}
+.picMarquee-left .bd ul li .pic{text-align:center;}
+.picMarquee-left .bd ul li .pic img{width:120px;height:90px;display:block;padding:2px;border:1px solid #ccc;}
+.picMarquee-left .bd ul li .pic a:hover img{border-color:#999;}
+.picMarquee-left .bd ul li .title{line-height:24px;}
+
+/**图片无缝滚动-上css**/
+.picMarquee-top{margin:0 auto;width:210px;overflow:hidden;position:relative;border:1px solid #ccc;}
+.picMarquee-top .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.picMarquee-top .hd .prev,.picMarquee-top .hd .next{display:block;width:9px;height:5px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;background:url("../images/arrow.png") 0 -100px no-repeat;}
+.picMarquee-top .hd .next{background-position:0 -140px;}
+.picMarquee-top .hd .prevStop{background-position:-60px -100px;}
+.picMarquee-top .hd .nextStop{background-position:-60px -140px;}
+.picMarquee-top .bd{padding:10px;}
+.picMarquee-top .bd ul{overflow:hidden;zoom:1;}
+.picMarquee-top .bd ul li{text-align:center;zoom:1;}
+.picMarquee-top .bd ul li .pic{text-align:center;}
+.picMarquee-top .bd ul li .pic img{width:180px;height:90px;display:block;padding:2px;border:1px solid #ccc;}
+.picMarquee-top .bd ul li .pic a:hover img{border-color:#999;}
+.picMarquee-top .bd ul li .title{line-height:24px;}
+
+/*文字滚动-左css*/
+.txtScroll-left{position:relative;border:1px solid #ccc;}
+.txtScroll-left .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.txtScroll-left .hd .prev,.txtScroll-left .hd .next{display:block;width:5px;height:9px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;background:url("../images/arrow.png") no-repeat;}
+.txtScroll-left .hd .next{background-position:0 -50px;}
+.txtScroll-left .hd .prevStop{background-position:-60px 0;}
+.txtScroll-left .hd .nextStop{background-position:-60px -50px;}
+.txtScroll-left .hd ul{float:right;overflow:hidden;zoom:1;margin-top:10px;}
+.txtScroll-left .hd ul li{float:left;width:9px;height:9px;overflow:hidden;margin-right:5px;text-indent:-999px;cursor:pointer;background:url("../images/icoCircle.gif") 0 -9px no-repeat;}
+.txtScroll-left .hd ul li.on{background-position:0 0;}
+.txtScroll-left .bd{padding:10px;width:430px;overflow:hidden;}
+.txtScroll-left .bd ul{overflow:hidden;zoom:1;}
+.txtScroll-left .bd ul li{margin-right:20px;float:left;height:24px;line-height:24px;text-align:left;_display:inline;}
+.txtScroll-left .bd ul li span{color:#999;}
+
+/**文字滚动-上**/
+.txtScroll-top{overflow:hidden;position:relative;border:1px solid #ccc;}
+.txtScroll-top .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.txtScroll-top .hd .prev,.txtScroll-top .hd .next{display:block;width:9px;height:5px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;background:url("../images/arrow.png") 0 -100px no-repeat;}
+.txtScroll-top .hd .next{background-position:0 -140px;}
+.txtScroll-top .hd .prevStop{background-position:-60px -100px;}
+.txtScroll-top .hd .nextStop{background-position:-60px -140px;}
+.txtScroll-top .hd ul{float:right;overflow:hidden;zoom:1;margin-top:10px;}
+.txtScroll-top .hd ul li{float:left;width:9px;height:9px;overflow:hidden;margin-right:5px;text-indent:-999px;cursor:pointer;background:url("../images/icoCircle.gif") 0 -9px no-repeat;}
+.txtScroll-top .hd ul li.on{background-position:0 0;}
+.txtScroll-top .bd{padding:15px;}
+.txtScroll-top .infoList li{height:24px;line-height:24px;}
+.txtScroll-top .infoList li .date{float:right;color:#999;}
+
+/**** 文字无缝滚动-左*****/
+.txtMarquee-left{position:relative;border:1px solid #ccc;}
+.txtMarquee-left .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.txtMarquee-left .hd .prev,.txtMarquee-left .hd .next{display:block;width:5px;height:9px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;cursor:pointer;background:url("../images/arrow.png") no-repeat;}
+.txtMarquee-left .hd .next{background-position:0 -50px;}
+.txtMarquee-left .hd .prevStop{background-position:-60px 0;}
+.txtMarquee-left .hd .nextStop{background-position:-60px -50px;}
+.txtMarquee-left .bd{padding:10px;}
+.txtMarquee-left .bd .tempWrap{width:425px!important;}
+
+/* 用 !important覆盖SuperSlide自动生成的宽度，这样就可以手动控制可视宽度。 */
+.txtMarquee-left .bd ul{overflow:hidden;zoom:1;}
+.txtMarquee-left .bd ul li{margin-right:20px;float:left;height:24px;line-height:24px;text-align:left;_display:inline;width:auto!important;}
+
+/* 用 width:auto !important 覆盖SuperSlide自动生成的宽度，解决文字不衔接问题 */
+.txtMarquee-left .bd ul li span{color:#999;}
+
+/******文字无缝滚动-上******/
+.txtMarquee-top{overflow:hidden;position:relative;border:1px solid #ccc;}
+.txtMarquee-top .hd{overflow:hidden;height:30px;background:#f4f4f4;padding:0 10px;}
+.txtMarquee-top .hd .prev,.txtMarquee-top .hd .next{display:block;width:9px;height:5px;float:right;margin-right:5px;margin-top:10px;overflow:hidden;cursor:pointer;background:url("../images/arrow.png") 0 -100px no-repeat;}
+.txtMarquee-top .hd .next{background-position:0 -140px;}
+.txtMarquee-top .hd .prevStop{background-position:-60px -100px;}
+.txtMarquee-top .hd .nextStop{background-position:-60px -140px;}
+.txtMarquee-top .bd{padding:15px;}
+.txtMarquee-top .infoList li{height:24px;line-height:24px;}
+.txtMarquee-top .infoList li .date{float:right;color:#999;}
+
+/* 手风琴css */
+.sideMenu{border:1px solid #ddd;}
+.sideMenu h3{height:32px;line-height:32px;padding-left:10px;border-top:1px solid #e3e3e3;background:#f4f4f4;cursor:pointer;font:normal 14px/32px "Microsoft YaHei";}
+.sideMenu h3 em{float:right;display:block;width:40px;height:32px;background:url(../images/icoAdd.png) 16px 12px no-repeat;cursor:pointer;}
+.sideMenu h3.on em{background-position:16px -57px;}
+.sideMenu ul{padding:8px 25px;color:#999;display:none; /* 默认都隐藏 */}
