@@ -86,7 +86,7 @@
 .txtMarquee-left .hd .prevStop{background-position:-60px 0;}
 .txtMarquee-left .hd .nextStop{background-position:-60px -50px;}
 .txtMarquee-left .bd{padding:10px;}
-.txtMarquee-left .bd .tempWrap{width:425px!important;}
+.txtMarquee-left .bd .tempWrap{width:800px!important;}
 
 /* 用 !important覆盖SuperSlide自动生成的宽度，这样就可以手动控制可视宽度。 */
 .txtMarquee-left .bd ul{overflow:hidden;zoom:1;}
