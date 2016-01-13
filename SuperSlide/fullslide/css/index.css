@@ -1,0 +1,18 @@
+/* fullslide */
+.fullslide,
+.fullslide .bdd li,
+.fullslide .bdd li a{height: 500px;}
+.fullslide{width:100%;position:relative;background:#000;}
+.fullslide .bdd{margin:0 auto;position:relative;z-index:0;overflow:hidden;}
+.fullslide .bdd ul{width:100% !important;}
+.fullslide .bdd li{width:100% !important;overflow:hidden;text-align:center;}
+.fullslide .bdd li a{display:block;}
+.fullslide .hd{width:100%;position:absolute;z-index:1;bottom:0;left:0;height:30px;line-height:30px;}
+.fullslide .hd ul{text-align:center;}
+.fullslide .hd ul li{cursor:pointer;display:inline-block;*display:inline;zoom:1;width:42px;height:11px;margin:1px;overflow:hidden;background:#000;filter:alpha(opacity=50);opacity:0.5;line-height:999px;}
+.fullslide .hd ul .on{background:#f00;}
+.fullslide .prev,.fullslide .next{display:block;position:absolute;z-index:1;top:50%;margin-top:-30px;left:15%;z-index:1;width:40px;height:60px;background:url(../images/slider-arrow.png) -126px -137px #000 no-repeat;cursor:pointer;filter:alpha(opacity=50);opacity:0.5;display:none;}
+.fullslide .next{left:auto;right:15%;background-position:-6px -137px;}
+.leftad{float:left;width:240px;margin-right:10px;}
+.leftad img{max-width:240px;_width:expression(this.width >240 && this.height < this.width ? 240:true);}
+.base a{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;display:inline-block;}
