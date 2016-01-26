@@ -17,7 +17,7 @@ $(function() {
 		};
 		f.prototype = {
 			s_html: '<div  class="kl-sel">' +
-				'<div class="kl-showtext"><span class="selvalue"></span><s class="selico"></s></div>' +
+				'<div class="kl-showtext"><span class="selvalue"></span><s class="selico"><i class="sanjiao"></i></s></div>' +
 				' <div class="kl-sel-op-block">' +
 				' </div>' +
 				'</div>',
