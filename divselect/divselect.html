@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="../assets/js/jquery-1.9.1.min.js" type="text/javascript" ></script>
+<title>DIV+CSS=SELECT</title>
+<style>
+.kl-sel{position:relative;display:inline-block;border:solid 1px #ccc;margin-left:10px;float:left;}
+.kl-sel .kl-showtext,.kl-sel .kl-sel-op{font-size:14px;text-overflow:ellipsis; overflow: hidden;}
+.kl-sel .kl-sel-op-block{display:none;position:absolute;left:-1px;top:27px;width:100%;height:auto;overflow:hidden;overflow-y:auto;max-height:300px;border:solid 1px #ccc;border-top:none;background:#fff;z-index:1;}
+.kl-sel .kl-sel-op:hover{background:#ededed;}
+.kl-sel .kl-sel-op{display:block;height:30px;line-height:30px;padding:0px 20px;cursor:pointer;white-space:nowrap;}
+.kl-sel .kl-showtext .selvalue{cursor:pointer;padding:0px 20px;display:block;float:left;height:30px;line-height:30px;}
+.kl-sel .kl-showtext  .selico{display:block;float:right;height:30px;width:30px;background:url(images/xia.png) no-repeat;background-position:right 10px;}
+</style>
+</head>
+<body>
+<script>
+$(function() {
+//替换原有的select
+	(function($) {
+		//保存所有的select对象
+		var allselect={};
+		var f = function(o) {
+			if (!o) {
+				return false;
+			}
+			this.s_src = o;
+			this.s_dest = null;
+			this.op_block = null;
+			this.op_value = '';
+			this.init();
+		};
+		f.prototype = {
+			s_html: '<div  class="kl-sel">' +
+				'<div class="kl-showtext"><span class="selvalue"></span><s class="selico"></s></div>' +
+				' <div class="kl-sel-op-block">' +
+				' </div>' +
+				'</div>',
+			init: function() {
+				var _t = this;
+				var _s_src = this.s_src;
+				_s_src.hide();
+				_s_src.before(_t.s_html);
+				this.s_dest = _s_src.prev();
+				this.op_block = this.s_dest.find('.kl-sel-op-block');
+				this.op_value = this.s_dest.find('.selvalue');
+				this.tongbu();
+			},
+			tongbu: function() {
+				var _t = this;
+				var tem = this.op_block;
+				tem.html('');
+				this.op_value.html(this.s_src.find('option:selected').text());
+				this.s_src.find('option').each(function(index, el) {
+					var oo = $(this);
+					tem.append('<div class="kl-sel-op" title="'+oo.text()+'" value="' + oo.val() + '">' + oo.text() + '</div>');
+				});
+				this.op_value.next().click(function(event) {
+					_t.op_block.show();
+				});
+				this.op_value.click(function(event) {
+					_t.op_block.show();
+				});
+
+				this.op_block.find('.kl-sel-op').click(function(event) {
+					var t = $(this);
+					_t.op_value.html(t.text());
+					_t.op_block.hide();
+					//_t.op_block.css('visibility','hide');
+					_t.s_src.val(t.attr('value'));
+				});
+
+				$(document).bind("click", function(e) {
+					if ($(e.target).closest(".kl-sel-op-block").length == 0 && $(e.target).closest(".kl-sel").length == 0) {
+						_t.op_block.hide();
+						//_t.op_block.css('visibility','hide');
+					}
+				})
+			}
+		};
+		window.hideSelect={};
+		/**通过id查找select对象 id前缀为hideselect_加上原来select的name属性**/
+		hideSelect.find=function(id){
+			return allselect[id];
+		};
+		/**传入一个jquery select 对象初始并隐藏原来的select**/
+		hideSelect.hide = function(o) {
+			var b=new f(o);
+			var id='hideselect_'+b.s_src.attr('name');
+			allselect[id]=b;
+			b.s_dest.attr('id',id);
+			b.id=id;
+			return b;
+		};
+		window.hideSelect=hideSelect;
+	})($);
+
+console.log(hideSelect.hide($('#selecter')));
+console.log(hideSelect.hide($('#selecter1')));
+
+})
+</script>
+<select id="selecter" name="position1" class="form-control input-middle">
+    <option value="1">首页</option>
+    <option value="2">热点</option>
+    <option value="0" selected="">全部</option>
+</select>
+
+
+
+<select id="selecter1" name="position2" class="form-control input-middle">
+    <option value="1">首页</option>
+    <option value="2">热点2</option>
+    <option value="3">热点3热点3热点3热点3热点3</option>
+    <option value="4">热点4</option>
+    <option value="5">热点5</option>
+    <option value="6">热点6</option>
+    <option value="7" selected="">全部</option>
+</select>
+
+</body>
+</html>
