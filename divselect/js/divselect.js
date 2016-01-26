@@ -72,6 +72,9 @@ $(function() {
 		hideSelect.find = function(selectname) {
 			return allselect['hideselect_' + selectname];
 		};
+		hideSelect.tongbuByName=function(selectname) {
+			this.find(selectname).tongbu();
+		};
 		/**传入一个jquery select 对象初始并隐藏原来的select**/
 		hideSelect.hide = function(o) {
 			var arg = arguments;
