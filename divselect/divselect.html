@@ -29,6 +29,8 @@ $(function() {
 			this.s_dest = null;
 			this.op_block = null;
 			this.op_value = '';
+			//事件
+			this.change=function(){};
 			this.init();
 		};
 		f.prototype = {
@@ -46,6 +48,10 @@ $(function() {
 				this.op_block = this.s_dest.find('.kl-sel-op-block');
 				this.op_value = this.s_dest.find('.selvalue');
 				this.tongbu();
+			},
+			//绑定事件
+			bind:function(event,callback){
+				this[event]=callback;
 			},
 			tongbu: function() {
 				var _t = this;
@@ -67,14 +73,13 @@ $(function() {
 					var t = $(this);
 					_t.op_value.html(t.text());
 					_t.op_block.hide();
-					//_t.op_block.css('visibility','hide');
 					_t.s_src.val(t.attr('value'));
+					(typeof(_t.change)=='function')&&_t.change();
 				});
 
 				$(document).bind("click", function(e) {
 					if ($(e.target).closest(".kl-sel-op-block").length == 0 && $(e.target).closest(".kl-sel").length == 0) {
 						_t.op_block.hide();
-						//_t.op_block.css('visibility','hide');
 					}
 				})
 			}
@@ -96,8 +101,11 @@ $(function() {
 		window.hideSelect=hideSelect;
 	})($);
 
-console.log(hideSelect.hide($('#selecter')));
-console.log(hideSelect.hide($('#selecter1')));
+var aa=hideSelect.hide($('#selecter'));
+aa.bind('change',function(){
+alert('值已经改变啦');
+});
+hideSelect.hide($('#selecter1'));
 
 })
 </script>
