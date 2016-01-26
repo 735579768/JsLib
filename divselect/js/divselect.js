@@ -57,6 +57,7 @@ $(function() {
 					_t.op_block.hide();
 					_t.s_src.val(t.attr('value'));
 					(typeof(_t.change) == 'function') && _t.change();
+					_t.s_src.change();
 				});
 
 				$(document).bind("click", function(e) {
