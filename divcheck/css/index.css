@@ -1,0 +1,2 @@
+.kl-checkbox{display: inline-block;width: 14px; height: 14px; background: url(../images/inputico.png) 0px 0px no-repeat;}
+.kl-checkbox.kl-selected{background-position: 0px -16px;}
