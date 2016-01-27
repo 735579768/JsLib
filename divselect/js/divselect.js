@@ -25,6 +25,9 @@ $(function() {
 				var _t = this;
 				var _s_src = this.s_src;
 				_s_src.hide();
+				if (!_s_src.prev().hasClass('kl-sel')) {
+					_s_src.before(_t.s_html);
+				}
 				_s_src.before(_t.s_html);
 				this.s_dest = _s_src.prev();
 				this.op_block = this.s_dest.find('.kl-sel-op-block');
@@ -44,9 +47,9 @@ $(function() {
 					var oo = $(this);
 					tem.append('<div class="kl-sel-op" title="' + oo.text() + '" value="' + oo.val() + '">' + oo.text() + '</div>');
 				});
-/*				this.op_value.next().click(function(event) {
-					_t.op_block.show();
-				});*/
+				/*				this.op_value.next().click(function(event) {
+									_t.op_block.show();
+								});*/
 				this.op_value.parent().click(function(event) {
 					_t.op_block.show();
 				});
@@ -72,7 +75,7 @@ $(function() {
 		hideSelect.find = function(selectname) {
 			return allselect['hideselect_' + selectname];
 		};
-		hideSelect.tongbuByName=function(selectname) {
+		hideSelect.tongbuByName = function(selectname) {
 			this.find(selectname).tongbu();
 		};
 		/**传入一个jquery select 对象初始并隐藏原来的select**/
