@@ -44,10 +44,10 @@ $(function() {
 					var oo = $(this);
 					tem.append('<div class="kl-sel-op" title="' + oo.text() + '" value="' + oo.val() + '">' + oo.text() + '</div>');
 				});
-				this.op_value.next().click(function(event) {
+/*				this.op_value.next().click(function(event) {
 					_t.op_block.show();
-				});
-				this.op_value.click(function(event) {
+				});*/
+				this.op_value.parent().click(function(event) {
 					_t.op_block.show();
 				});
 
