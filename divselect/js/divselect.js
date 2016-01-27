@@ -28,7 +28,6 @@ $(function() {
 				if (!_s_src.prev().hasClass('kl-sel')) {
 					_s_src.before(_t.s_html);
 				}
-				_s_src.before(_t.s_html);
 				this.s_dest = _s_src.prev();
 				this.op_block = this.s_dest.find('.kl-sel-op-block');
 				this.op_value = this.s_dest.find('.selvalue');
@@ -67,33 +66,54 @@ $(function() {
 					if ($(e.target).closest(".kl-sel-op-block").length == 0 && $(e.target).closest(".kl-sel").length == 0) {
 						_t.op_block.hide();
 					}
-				})
+				});
+				this.s_src.change(function(event) {
+					_t.tongbu();
+				});
 			}
 		};
 		window.hideSelect = {};
 		/**通过id查找select对象 id前缀为hideselect_加上原来select的name属性**/
-		hideSelect.find = function(selectname) {
-			return allselect['hideselect_' + selectname];
+		hideSelect.findByName = function(selectname) {
+			return allselect['hideselect__name__' + selectname];
+		};
+		hideSelect.findById = function(selectid) {
+			return allselect['hideselect__id__' + selectid];
+		};
+		hideSelect.getAll = function() {
+			return allselect;
 		};
 		hideSelect.tongbuByName = function(selectname) {
-			this.find(selectname).tongbu();
+			this.findByName(selectname).tongbu();
+		};
+		hideSelect.tongbuById = function(selectid) {
+			this.findById(selectid).tongbu();
 		};
 		/**传入一个jquery select 对象初始并隐藏原来的select**/
-		hideSelect.hide = function(o) {
+		hideSelect.hide = function(oo) {
+			var tem = [];
 			var arg = arguments;
-			var b = new f(o);
-			if (arg[1]) {
-				if (/^\d+$/.test(arg[1])) {
-					b.s_dest.width(arg[1]);
-				} else {
-					b.s_dest.addClass(arg[1]);
+			oo.each(function(index, el) {
+				var o = $(this);
+				var b = new f(o);
+				if (arg[1]) {
+					if (/^\d+$/.test(arg[1])) {
+						b.s_dest.width(arg[1]);
+					} else {
+						b.s_dest.addClass(arg[1]);
+					}
 				}
-			}
-			var id = 'hideselect_' + b.s_src.attr('name');
-			allselect[id] = b;
-			b.s_dest.attr('id', id);
-			b.id = id;
-			return b;
+				var na = 'id__' + b.s_src.attr('id');
+				(na == 'id__undefined') && (na = 'name__' + b.s_src.attr('name'));
+				(na == 'name__undefined') && (na = index);
+				var id = 'hideselect__' + na;
+				allselect[id] = b;
+				b.s_dest.attr('id', id);
+				b.id = id;
+				tem.push(b);
+			});
+
+			return tem;
 		};
 		window.hideSelect = hideSelect;
 	})($);
