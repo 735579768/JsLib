@@ -1,28 +1,31 @@
 $(function() {
-	//替换原有的checkbox
+	//替换原有的radio
 	(function($) {
-		//保存所有的checkbox对象
-		var allcheckbox = {};
+		//保存所有的radio对象
+		var allradio = {};
 		var f = function(o) {
 			if (!o) {
 				return false;
 			}
 			this.s_src = o;
 			this.s_dest = null;
+			this.s_group = null;
 			//事件
 			this.change = function() {};
 			this.init();
 		};
 		f.prototype = {
-			s_html: '<s  class="kl-checkbox"></s>',
+			s_html: '<s  class="kl-radio"></s>',
 			init: function() {
 				var _t = this;
 				var _s_src = this.s_src;
-				if (!_s_src.prev().hasClass('kl-checkbox')) {
+				if (!_s_src.prev().hasClass('kl-radio')) {
 					_s_src.before(_t.s_html);
 				}
 				this.s_dest = _s_src.prev();
 				_s_src.hide();
+				var _name = this.s_src.attr('name');
+				this.group = $('input[name="' + _name + '"][type="radio"]');
 				this.tongbu();
 			},
 			//绑定事件
@@ -35,17 +38,12 @@ $(function() {
 				if (_t.s_src.is(':checked')) {
 					_t.s_dest.addClass('kl-selected');
 				}
-
-
 				_t.s_dest.click(function(event) {
 					var _tt = $(this);
-					if (_tt.hasClass('kl-selected')) {
-						_tt.removeClass('kl-selected');
-						_t.s_src.attr('checked', false);
-					} else {
-						_tt.addClass('kl-selected');
-						_t.s_src.attr('checked', true);
-					}
+					_t.group.prev().removeClass('kl-selected');
+					_t.group.attr('checked', false);
+					_tt.addClass('kl-selected');
+					_t.s_src.attr('checked', true);
 					_t.s_src.click();
 				});
 				this.s_src.change(function(event) {
@@ -53,25 +51,22 @@ $(function() {
 				});
 			}
 		};
-		window.hidecheckbox = {};
-		/**通过id查找checkbox对象 id前缀为hidecheckbox_加上原来checkbox的name属性**/
-		hidecheckbox.findByName = function(checkboxname) {
-			return allcheckbox['hidecheckbox__name__' + checkboxname];
+		window.hideradio = {};
+		/**通过id查找radio对象 id前缀为hideradio_加上原来radio的name属性**/
+		hideradio.findById = function(radioid) {
+			return allradio['hideradio__id__' + radioid];
 		};
-		hidecheckbox.findById = function(checkboxid) {
-			return allcheckbox['hidecheckbox__id__' + checkboxid];
+		hideradio.getAll = function() {
+			return allradio;
 		};
-		hidecheckbox.getAll = function() {
-			return allcheckbox;
+		hideradio.tongbuByName = function(radioname) {
+			this.findByName(radioname).tongbu();
 		};
-		hidecheckbox.tongbuByName = function(checkboxname) {
-			this.findByName(checkboxname).tongbu();
+		hideradio.tongbuById = function(radioid) {
+			this.findById(radioid).tongbu();
 		};
-		hidecheckbox.tongbuById = function(checkboxid) {
-			this.findById(checkboxid).tongbu();
-		};
-		/**传入一个jquery checkbox 对象初始并隐藏原来的checkbox**/
-		hidecheckbox.hide = function(oo) {
+		/**传入一个jquery radio 对象初始并隐藏原来的radio**/
+		hideradio.hide = function(oo) {
 			var tem = [];
 			var arg = arguments;
 			oo.each(function(index, el) {
@@ -88,8 +83,8 @@ $(function() {
 				var na = 'id__' + b.s_src.attr('id');
 				(na == 'id__undefined') && (na = 'name__' + b.s_src.attr('name'));
 				(na == 'name__undefined') && (na = index);
-				var id = 'hidecheckbox__' + na;
-				allcheckbox[id] = b;
+				var id = 'hideradio__' + na+'__'+index;
+				allradio[id] = b;
 				b.s_dest.attr('id', id);
 				b.id = id;
 				tem.push(b);
@@ -97,6 +92,6 @@ $(function() {
 
 			return tem;
 		};
-		window.hideCheckbox = hidecheckbox;
+		window.hideRadio = hideradio;
 	})($);
 });

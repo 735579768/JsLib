@@ -1,2 +1,4 @@
-.kl-checkbox{display: inline-block;width: 14px; height: 14px; background: url(../images/inputico.png) 0px 0px no-repeat;}
+.kl-checkbox{cursor: pointer; display: inline-block;width: 16px; height: 16px; background: url(../images/inputico.png) 0px 0px no-repeat;}
+.kl-radio{cursor: pointer;display: inline-block;width: 16px; height: 16px; background: url(../images/inputico.png) 0px -37px no-repeat;}
 .kl-checkbox.kl-selected{background-position: 0px -16px;}
+.kl-radio.kl-selected{background-position: 0px -55px;}
