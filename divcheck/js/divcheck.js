@@ -34,29 +34,29 @@ $(function() {
 				_t.s_dest.attr('value', _t.s_src.val());
 				if (_t.s_src.prop('checked')) {
 					_t.s_dest.addClass('kl-selected');
-				}else{
+				} else {
 					_t.s_dest.removeClass('kl-selected');
 				}
 
-				_t.s_dest.unbind( "click" );
-				_t.s_src.unbind( "change" );
-				_t.s_src.unbind( "click" );
+				_t.s_dest.unbind("click");
+				_t.s_src.unbind("change");
+				_t.s_src.unbind("click");
 				_t.s_dest.click(function(event) {
 					var _tt = $(this);
 					if (_tt.hasClass('kl-selected')) {
 						_tt.removeClass('kl-selected');
-						_t.s_src.prop('checked')&&_t.s_src.prop('checked', false);
+						_t.s_src.prop('checked') && _t.s_src.prop('checked', false);
 					} else {
 						_tt.addClass('kl-selected');
-						_t.s_src.prop('checked')||_t.s_src.prop('checked', true);
+						_t.s_src.prop('checked') || _t.s_src.prop('checked', true);
 					}
 				});
 				this.s_src.change(function(event) {
 					_t.tongbu();
 				});
-/*				this.s_src.click(function(event) {
-					_t.tongbu();
-				});*/
+				/*				this.s_src.click(function(event) {
+									_t.tongbu();
+								});*/
 			}
 		};
 		window.hidecheckbox = {};
@@ -148,7 +148,7 @@ $(function() {
 					_t.s_dest.addClass('kl-selected');
 					_t.s_src.prop('checked', true);
 				}
-				_t.s_dest.unbind( "click" );
+				_t.s_dest.unbind("click");
 				_t.s_dest.click(function(event) {
 					var _tt = $(this);
 					_t.group.prev().removeClass('kl-selected');
@@ -163,17 +163,11 @@ $(function() {
 		};
 		window.hideradio = {};
 		/**通过id查找radio对象 id前缀为hideradio_加上原来radio的name属性**/
-		hideradio.findById = function(radioid) {
-			return allradio['hideradio__id__' + radioid];
+		hideradio.findByName = function(radioname) {
+			return allradio[radioname];
 		};
 		hideradio.getAll = function() {
 			return allradio;
-		};
-		hideradio.tongbuByName = function(radioname) {
-			this.findByName(radioname).tongbu();
-		};
-		hideradio.tongbuById = function(radioid) {
-			this.findById(radioid).tongbu();
 		};
 		/**传入一个jquery radio 对象初始并隐藏原来的radio**/
 		hideradio.hide = function(oo) {
@@ -190,11 +184,14 @@ $(function() {
 						b.s_dest.addClass(arg[1]);
 					}
 				}
-				var na = 'id__' + b.s_src.prop('id');
-				(na == 'id__undefined') && (na = 'name__' + b.s_src.prop('name'));
-				(na == 'name__undefined') && (na = index);
+				var _id=b.s_src.prop('id');
+				var _name=b.s_src.prop('name');
+				var na = 'id__' + _id;
+				(na == 'id__undefined') && (na = 'name__' +_name );
+				(na == 'name__undefined') && (na = 'index_'+index);
 				var id = 'hideradio__' + na+'__'+index;
-				allradio[id] = b;
+				allradio[_name]||(allradio[_name]={});
+				allradio[_name][id]=b;
 				b.s_dest.prop('id', id);
 				b.id = id;
 				tem.push(b);
