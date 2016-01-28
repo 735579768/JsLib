@@ -7,6 +7,7 @@ $(function() {
 			if (!o) {
 				return false;
 			}
+			this.bindevent = false;
 			this.s_src = o;
 			this.s_dest = null;
 			//事件
@@ -37,26 +38,23 @@ $(function() {
 				} else {
 					_t.s_dest.removeClass('kl-selected');
 				}
-
-				_t.s_dest.unbind("click");
-				_t.s_src.unbind("change");
-				_t.s_src.unbind("click");
-				_t.s_dest.click(function(event) {
-					var _tt = $(this);
-					if (_tt.hasClass('kl-selected')) {
-						_tt.removeClass('kl-selected');
-						_t.s_src.prop('checked') && _t.s_src.prop('checked', false);
-					} else {
-						_tt.addClass('kl-selected');
-						_t.s_src.prop('checked') || _t.s_src.prop('checked', true);
-					}
-				});
-				this.s_src.change(function(event) {
-					_t.tongbu();
-				});
-				/*				this.s_src.click(function(event) {
-									_t.tongbu();
-								});*/
+				if (!this.bindevent) {
+					this.bindevent = true;
+					_t.s_dest.click(function(event) {
+						var _tt = $(this);
+						if (_tt.hasClass('kl-selected')) {
+							_tt.removeClass('kl-selected');
+							//_t.s_src.prop('checked') && _t.s_src.prop('checked', false);
+						} else {
+							_tt.addClass('kl-selected');
+							//_t.s_src.prop('checked') || _t.s_src.prop('checked', true);
+						}
+						_t.s_src.click();
+					});
+					_t.s_src.change(function(event) {
+						_t.tongbu();
+					});
+				}
 			}
 		};
 		window.hidecheckbox = {};
@@ -114,6 +112,7 @@ $(function() {
 			if (!o) {
 				return false;
 			}
+			this.bindevent = false;
 			this.s_src = o;
 			this.s_dest = null;
 			this.s_group = null;
@@ -148,17 +147,20 @@ $(function() {
 					_t.s_dest.addClass('kl-selected');
 					_t.s_src.prop('checked', true);
 				}
-				_t.s_dest.unbind("click");
-				_t.s_dest.click(function(event) {
-					var _tt = $(this);
-					_t.group.prev().removeClass('kl-selected');
-					_t.group.prop('checked', false);
-					_tt.addClass('kl-selected');
-					_t.s_src.prop('checked', true);
-				});
-				this.s_src.change(function(event) {
-					_t.tongbu();
-				});
+				if (!this.bindevent) {
+					this.bindevent = true;
+					_t.s_dest.click(function(event) {
+						var _tt = $(this);
+						_t.group.prev().removeClass('kl-selected');
+						_t.group.prop('checked', false);
+						_tt.addClass('kl-selected');
+						_t.s_src.prop('checked', true);
+						_t.s_src.click();
+					});
+					_t.s_src.change(function(event) {
+						_t.tongbu();
+					});
+				}
 			}
 		};
 		window.hideradio = {};
@@ -184,14 +186,14 @@ $(function() {
 						b.s_dest.addClass(arg[1]);
 					}
 				}
-				var _id=b.s_src.prop('id');
-				var _name=b.s_src.prop('name');
+				var _id = b.s_src.prop('id');
+				var _name = b.s_src.prop('name');
 				var na = 'id__' + _id;
-				(na == 'id__undefined') && (na = 'name__' +_name );
-				(na == 'name__undefined') && (na = 'index_'+index);
-				var id = 'hideradio__' + na+'__'+index;
-				allradio[_name]||(allradio[_name]={});
-				allradio[_name][id]=b;
+				(na == 'id__undefined') && (na = 'name__' + _name);
+				(na == 'name__undefined') && (na = 'index_' + index);
+				var id = 'hideradio__' + na + '__' + index;
+				allradio[_name] || (allradio[_name] = {});
+				allradio[_name][id] = b;
 				b.s_dest.prop('id', id);
 				b.id = id;
 				tem.push(b);
