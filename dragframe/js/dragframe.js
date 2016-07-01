@@ -26,11 +26,11 @@ $(function() {
 				return this;
 			},
 			initFrameSize: function() {
-				var parW = this.tdLeft.parent().width();
+				var parW = this.tdFrame.width();
 				this.tdLeft.width(parW / 2);
 				this.tdRight.width(parW / 2 - this.tdLine.width());
 				this.tdLine.css('left', parW / 2 + 'px');
-				this.tdLine.height(this.tdLeft.parent().height());
+				this.tdLine.height(this.tdFrame.height());
 			},
 			/**
 			 * 绑定推动事件
@@ -38,7 +38,7 @@ $(function() {
 			bindMove: function() {
 				// debugger;
 				var _t = this;
-				var parW = this.tdLeft.parent().width();
+				var parW = this.tdFrame.width();
 				var le = this.tdLeft;
 				var li = this.tdLine;
 				var ri = this.tdRight;
@@ -54,7 +54,7 @@ $(function() {
 			},
 			addShade: function() {
 				var _t = this;
-				var parW = this.tdLeft.parent().width();
+				var parW = this.tdFrame.width();
 				var le = this.tdLeft;
 				var li = this.tdLine;
 				var ri = this.tdRight;
@@ -119,11 +119,11 @@ $(function() {
 				return this;
 			},
 			initFrameSize: function() {
-				var parH = this.tdUp.parent().height();
+				var parH = this.tdFrame.height();
 				this.tdUp.height(parH / 2);
 				this.tdDown.height(parH / 2 - this.tdLine.height());
 				this.tdLine.css('top', parH / 2 + 'px');
-				this.tdLine.width(this.tdUp.parent().width());
+				this.tdLine.width(this.tdFrame.width());
 			},
 			/**
 			 * 绑定推动事件
@@ -131,7 +131,7 @@ $(function() {
 			bindMove: function() {
 				// debugger;
 				var _t = this;
-				var parH = this.tdUp.parent().height();
+				var parH = this.tdFrame.height();
 				var le = this.tdUp;
 				var li = this.tdLine;
 				var ri = this.tdDown;
@@ -147,7 +147,7 @@ $(function() {
 			},
 			addShade: function() {
 				var _t = this;
-				var parH = this.tdUp.parent().height();
+				var parH = this.tdFrame.height();
 				var le = this.tdUp;
 				var li = this.tdLine;
 				var ri = this.tdDown;
