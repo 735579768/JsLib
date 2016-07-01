@@ -16,6 +16,12 @@ $(function() {
 			this.init(id);
 		};
 		c.prototype = {
+			path: function() {
+				var a = document.scripts;
+				var b = a[a.length - 1];
+				var c = b.src;
+				return c.substring(0, c.lastIndexOf("/") + 1);
+			}(),
 			init: function(id) {
 				var _t = this;
 				var _tf = _t.tdFrame = $(id);
@@ -97,9 +103,7 @@ $(function() {
 			return new c(id, callback);
 		};
 	}(window);
-	lr_tuodong('#td-frame', function(event) {
-		//console.log(event);
-	});
+
 	/**
 	 * 上下拖动类
 	 */
@@ -195,7 +199,5 @@ $(function() {
 			return new c(id, callback);
 		};
 	}(window);
-	ud_tuodong('#td-ud-frame', function(event) {
-		//console.log(event);
-	});
+
 });
