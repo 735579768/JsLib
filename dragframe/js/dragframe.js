@@ -40,7 +40,7 @@ $(function() {
 				_t.tdRight.width(parW / 2 - _t.tdLine.width());
 				_t.tdLine.css({
 					'left': parW / 2 + 'px',
-					'height': _t.tdFrame.height() + 'px'
+					// 'height': _t.tdFrame.height() + 'px'
 				});
 			},
 			/**
@@ -60,6 +60,7 @@ $(function() {
 				});
 				$(document).mouseup(function(event) {
 					_t.mouseDown = false;
+					_t.moveIng = false;
 					$('#td_frame_bg').remove();
 				});
 			},
@@ -89,7 +90,10 @@ $(function() {
 
 						var lwidth = _x + le.width();
 						le.width(lw);
-						li.css('left', lw + 'px');
+						li.css({
+							'left': lw + 'px',
+							// 'height': _t.tdFrame.height() + 'px'
+						});
 						ri.width(rw);
 						// console.log(_t.zuoBiao);
 						// console.log(_x);
@@ -138,7 +142,7 @@ $(function() {
 				_t.tdDown.height(parH / 2 - _t.tdLine.height());
 				_t.tdLine.css({
 					'top': parH / 2 + 'px',
-					'width': _t.tdFrame.width() + 'px'
+					// 'width': _t.tdFrame.width() + 'px'
 				});
 			},
 			/**
@@ -158,6 +162,7 @@ $(function() {
 				});
 				$(document).mouseup(function(event) {
 					_t.mouseDown = false;
+					_t.moveIng = false;
 					$('#td_frame_bg').remove();
 				});
 			},
@@ -188,7 +193,10 @@ $(function() {
 						}
 						le.height(uh);
 						ri.height(dh);
-						li.css('top', uh + 'px');
+						li.css({
+							'top': uh + 'px',
+							// 'width': _t.tdFrame.width() + 'px'
+						});
 						_t.moveIng = false;
 					}
 				});
