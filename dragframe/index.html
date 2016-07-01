@@ -17,8 +17,7 @@
         <div class="td-frame" id="td-frame">
             <div class="td-left">
                 <div class="acecls">
-
-                框架左边内容
+                    框架左边内容
                 </div>
             </div>
             <div class="td-line">
@@ -27,13 +26,25 @@
                 <div class="td-line-s td-line-s3"></div>
             </div>
             <div class="td-right">
-
-
-                    框架右边内容
-        <div class="td-frame" id="td-ud-frame">
+                <div class="td-frame" id="td-ud-frame">
+                    <div class="td-up">
+                        框架上边内容
+                    </div>
+                    <div class="td-ud-line">
+                        <div class="td-ud-line-s td-ud-line-s1"></div>
+                        <div class="td-ud-line-s td-ud-line-s2"></div>
+                        <div class="td-ud-line-s td-ud-line-s3"></div>
+                    </div>
+                    <div class="td-down">
+                        框架下边内容
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:10px;"></div>
+        <div class="td-frame" id="td-ud-frame2">
             <div class="td-up">
-                 框架上边内容
-
+                框架上边内容
             </div>
             <div class="td-ud-line">
                 <div class="td-ud-line-s td-ud-line-s1"></div>
@@ -42,25 +53,23 @@
             </div>
             <div class="td-down">
                 框架下边内容
-
             </div>
         </div>
-            </div>
-        </div>
-
-
     </div>
     <script type="text/javascript">
-$(function(){
+    $(function() {
 
-    var obj = lr_tuodong('#td-frame', function(event) {
-        //console.log(event);
+        var obj = lr_tuodong('#td-frame', function(event) {
+            //console.log(event);
+        });
+        var obj1 = ud_tuodong('#td-ud-frame', function(event) {
+            //console.log(event);
+        });
+        var obj1 = ud_tuodong('#td-ud-frame2', function(event) {
+            //console.log(event);
+        });
+        console.log(obj.path);
     });
-    var obj1 = ud_tuodong('#td-ud-frame', function(event) {
-        //console.log(event);
-    });
-    console.log(obj.path);
-});
     </script>
 </body>
 
