@@ -17,20 +17,25 @@ $(function() {
 		};
 		c.prototype = {
 			init: function(id) {
-				this.tdFrame = $(id);
-				this.tdLeft = this.tdFrame.children('.td-left');
-				this.tdRight = this.tdFrame.children('.td-right');
-				this.tdLine = this.tdFrame.children('.td-line');
-				this.initFrameSize();
-				this.bindMove();
-				return this;
+				var _t = this;
+				var _tf = _t.tdFrame = $(id);
+
+				_t.tdLeft = _tf.children('.td-left');
+				_t.tdRight = _tf.children('.td-right');
+				_t.tdLine = _tf.children('.td-line');
+				_t.initFrameSize();
+				_t.bindMove();
+				return _t;
 			},
 			initFrameSize: function() {
-				var parW = this.tdFrame.width();
-				this.tdLeft.width(parW / 2);
-				this.tdRight.width(parW / 2 - this.tdLine.width());
-				this.tdLine.css('left', parW / 2 + 'px');
-				this.tdLine.height(this.tdFrame.height());
+				var _t = this;
+				var parW = _t.tdFrame.width();
+				_t.tdLeft.width(parW / 2);
+				_t.tdRight.width(parW / 2 - _t.tdLine.width());
+				_t.tdLine.css({
+					'left': parW / 2 + 'px',
+					'height': _t.tdFrame.height() + 'px'
+				});
 			},
 			/**
 			 * 绑定推动事件
@@ -38,10 +43,10 @@ $(function() {
 			bindMove: function() {
 				// debugger;
 				var _t = this;
-				var parW = this.tdFrame.width();
-				var le = this.tdLeft;
-				var li = this.tdLine;
-				var ri = this.tdRight;
+				var parW = _t.tdFrame.width();
+				var le = _t.tdLeft;
+				var li = _t.tdLine;
+				var ri = _t.tdRight;
 				li.mousedown(function(event) {
 					_t.mouseDown = true;
 					_t.zuoBiao[0] = event.clientX;
@@ -54,18 +59,21 @@ $(function() {
 			},
 			addShade: function() {
 				var _t = this;
-				var parW = this.tdFrame.width();
-				var le = this.tdLeft;
-				var li = this.tdLine;
-				var ri = this.tdRight;
+				var parW = _t.tdFrame.width();
+				var le = _t.tdLeft;
+				var li = _t.tdLine;
+				var ri = _t.tdRight;
 				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
-				$('#td_frame_bg').height($(document).height());
-				$('#td_frame_bg').width($(document).width());
-				$('#td_frame_bg').mousemove(function(event) {
+				var bg = $('#td_frame_bg');
+				bg.css({
+					'height': $(document).height() + 'px',
+					'width': $(document).width() + 'px'
+				});
+				bg.mousemove(function(event) {
 					_t.callback && _t.callback(event);
 					var _x = event.clientX - _t.zuoBiao[0];
 					_t.zuoBiao[0] = event.clientX;
-					if (_t.mouseDown && !this.moveIng) {
+					if (_t.mouseDown && !_t.moveIng) {
 						_t.moveIng = true;
 						var lw = _x + le.width();
 						var rw = ri.width() - _x;
@@ -110,20 +118,24 @@ $(function() {
 		};
 		c.prototype = {
 			init: function(id) {
-				this.tdFrame = $(id);
-				this.tdUp = this.tdFrame.children('.td-up');
-				this.tdDown = this.tdFrame.children('.td-down');
-				this.tdLine = this.tdFrame.children('.td-ud-line');
-				this.initFrameSize();
-				this.bindMove();
-				return this;
+				var _t = this;
+				var _tf = _t.tdFrame = $(id);
+				_t.tdUp = _tf.children('.td-up');
+				_t.tdDown = _tf.children('.td-down');
+				_t.tdLine = _tf.children('.td-ud-line');
+				_t.initFrameSize();
+				_t.bindMove();
+				return _t;
 			},
 			initFrameSize: function() {
-				var parH = this.tdFrame.height();
-				this.tdUp.height(parH / 2);
-				this.tdDown.height(parH / 2 - this.tdLine.height());
-				this.tdLine.css('top', parH / 2 + 'px');
-				this.tdLine.width(this.tdFrame.width());
+				var _t = this;
+				var parH = _t.tdFrame.height();
+				_t.tdUp.height(parH / 2);
+				_t.tdDown.height(parH / 2 - _t.tdLine.height());
+				_t.tdLine.css({
+					'top': parH / 2 + 'px',
+					'width': _t.tdFrame.width() + 'px'
+				});
 			},
 			/**
 			 * 绑定推动事件
@@ -131,10 +143,10 @@ $(function() {
 			bindMove: function() {
 				// debugger;
 				var _t = this;
-				var parH = this.tdFrame.height();
-				var le = this.tdUp;
-				var li = this.tdLine;
-				var ri = this.tdDown;
+				var parH = _t.tdFrame.height();
+				var le = _t.tdUp;
+				var li = _t.tdLine;
+				var ri = _t.tdDown;
 				li.mousedown(function(event) {
 					_t.mouseDown = true;
 					_t.zuoBiao[1] = event.clientY;
@@ -147,22 +159,26 @@ $(function() {
 			},
 			addShade: function() {
 				var _t = this;
-				var parH = this.tdFrame.height();
-				var le = this.tdUp;
-				var li = this.tdLine;
-				var ri = this.tdDown;
+				var parH = _t.tdFrame.height();
+				var le = _t.tdUp;
+				var li = _t.tdLine;
+				var ri = _t.tdDown;
 				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
-				$('#td_frame_bg').height($(document).height());
-				$('#td_frame_bg').width($(document).width());
-				$('#td_frame_bg').mousemove(function(event) {
+				var bg = $('#td_frame_bg');
+				bg.css({
+					'height': $(document).height() + 'px',
+					'width': $(document).width() + 'px'
+				});
+
+				bg.mousemove(function(event) {
 					_t.callback && _t.callback(event);
 					var _y = event.clientY - _t.zuoBiao[1];
 					_t.zuoBiao[1] = event.clientY;
-					if (_t.mouseDown && !this.moveIng) {
+					if (_t.mouseDown && !_t.moveIng) {
 						_t.moveIng = true;
 						var uh = le.height() + _y;
 						var dh = ri.height() - _y;
-						console.log(dh);
+						// console.log(dh);
 						if (uh <= 0 || dh <= 0) {
 							return;
 						}
