@@ -9,7 +9,7 @@ $(function() {
 			//当多个框架嵌套的时候需要在回调函数中执行drag.resetSize();同步其它框架大小
 			resetSize: function() {
 				for (a in this.objlist) {
-					this.objlist[a].resetSize();
+					this.objlist[a].initFrameSize();
 				}
 			}
 		};
@@ -56,75 +56,42 @@ $(function() {
 				_t.drF1.addClass('drag-f1');
 				_t.drF2.addClass('drag-f2');
 				_t.drL.addClass('drag-line');
+				if (_t.conf.type == 1) {
+					_t.drF.addClass('drag-lr-frame');
+				} else {
+					_t.drF.addClass('drag-ud-frame');
+				}
+				_t.drF1BL = 0.5;
 				_t.initFrameSize();
 				_t.bindMove();
 				return _t;
 			},
-			resetSize: function() {
+			initFrameSize: function() {
 				var _t = this;
 				if (_t.conf.type == 1) {
-					var parW = _t.drF.width();
+
 					var lW = _t.drL.outerWidth();
+					var parW = _t.drF.width() - lW;
 					var sW = _t.drF1.width() + _t.drF2.width();
 					if ((lW + sW) == parW) {
 						return;
 					}
-					// console.log(_t.drF1BL);
 					var f1w = parseInt(parW * _t.drF1BL);
 					_t.drL.css('left', f1w + 'px');
 					_t.drF1.width(f1w);
-					_t.drF2.width(parW - f1w - lW);
-					// console.log(_t);
+					_t.drF2.width(parW - f1w);
+
 				} else {
-					var parH = _t.drF.height();
-					var lH = _t.drL.outerHeight();
-					var sH = _t.drF1.height() + _t.drF2.height();
-					if ((lH + sH) == parH) {
+					var lh = _t.drL.outerHeight();
+					var parh = _t.drF.height() - lh;
+					var sh = _t.drF1.height() + _t.drF2.height();
+					if ((lh + sh) == parh) {
 						return;
 					}
-					var f1h = parseInt(parH * _t.drF1BL);
-					_t.drL.css('left', f1h + 'px');
+					var f1h = parseInt(parh * _t.drF1BL);
+					_t.drL.css('top', f1h + 'px');
 					_t.drF1.height(f1h);
-					_t.drF2.height(parH - f1h - lH);
-				}
-			},
-			initFrameSize: function() {
-				var _t = this;
-				_t.drF1BL = 0.5;
-				if (_t.conf.type == 1) {
-					_t.drF.addClass('drag-lr-frame')
-					var parW = _t.drF.width();
-					_t.drF1.width(parW / 2);
-					_t.drF2.width(parW / 2 - _t.drL.outerWidth());
-					_t.drL.css({
-						'left': parW / 2 + 'px',
-					});
-					_t.drF1.css({
-						'left': '0px',
-						'top': '0px',
-					});
-					_t.drF2.css({
-						'right': '0px',
-						'top': '0px',
-					});
-
-				} else {
-					_t.drF.addClass('drag-ud-frame')
-					var parH = _t.drF.height();
-					_t.drF1.height(parH / 2);
-					_t.drF2.height(parH / 2 - _t.drL.outerHeight());
-					_t.drL.css({
-						'top': parH / 2 + 'px',
-					});
-					_t.drF1.css({
-						'left': '0px',
-						'top': '0px',
-					});
-					_t.drF2.css({
-						'left': '0px',
-						'bottom': '0px',
-					});
-
+					_t.drF2.height(parh - f1h);
 				}
 
 
