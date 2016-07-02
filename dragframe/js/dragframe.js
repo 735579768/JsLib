@@ -46,21 +46,29 @@ $(function() {
 			},
 			initFrameSize: function() {
 				var _t = this;
+				_t.drF1.addClass('drag-f1');
+				_t.drF2.addClass('drag-f2');
+				_t.drL.addClass('drag-line');
 				if (_t.conf.type == 1) {
+					_t.drF.addClass('drag-lr-frame')
 					var parW = _t.drF.width();
 					_t.drF1.width(parW / 2);
 					_t.drF2.width(parW / 2 - _t.drL.width());
 					_t.drL.css({
-						'left': parW / 2 + 'px'
+						'left': parW / 2 + 'px',
 					});
+
 				} else {
+					_t.drF.addClass('drag-ud-frame')
 					var parH = _t.drF.height();
 					_t.drF1.height(parH / 2);
 					_t.drF2.height(parH / 2 - _t.drL.height());
 					_t.drL.css({
-						'top': parH / 2 + 'px'
+						'top': parH / 2 + 'px',
 					});
+
 				}
+
 
 			},
 			/**
@@ -82,7 +90,7 @@ $(function() {
 			},
 			addShade: function() {
 				var _t = this;
-				var c=_t.conf;
+				var c = _t.conf;
 				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
 				var bg = $('#td_frame_bg');
 				bg.css({

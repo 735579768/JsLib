@@ -21,19 +21,19 @@
                 </div>
             </div>
             <div class="td-line">
-                <div class="td-line-s td-line-s1"></div>
-                <div class="td-line-s td-line-s2"></div>
-                <div class="td-line-s td-line-s3"></div>
+                <div class="drag-line-s1"></div>
+                <div class="drag-line-s2"></div>
+                <div class="drag-line-s3"></div>
             </div>
             <div class="td-right">
                 <div class="td-frame" id="td-ud-frame">
                     <div class="td-up">
                         框架上边内容
                     </div>
-                    <div class="td-ud-line">
-                        <div class="td-ud-line-s td-ud-line-s1"></div>
-                        <div class="td-ud-line-s td-ud-line-s2"></div>
-                        <div class="td-ud-line-s td-ud-line-s3"></div>
+                    <div class="td-line">
+                        <div class="drag-line-s1"></div>
+                        <div class="drag-line-s2"></div>
+                        <div class="drag-line-s3"></div>
                     </div>
                     <div class="td-down">
                         框架下边内容
@@ -46,10 +46,10 @@
             <div class="td-up">
                 框架上边内容
             </div>
-            <div class="td-ud-line">
-                <div class="td-ud-line-s td-ud-line-s1"></div>
-                <div class="td-ud-line-s td-ud-line-s2"></div>
-                <div class="td-ud-line-s td-ud-line-s3"></div>
+            <div class="td-line">
+                <div class="drag-line-s1"></div>
+                <div class="drag-line-s2"></div>
+                <div class="drag-line-s3"></div>
             </div>
             <div class="td-down">
                 框架下边内容
@@ -69,11 +69,11 @@
             }
             });
                 var obj1 = dragFrame({
-            type:2,
+            type:1,
             mainFrame:'#td-ud-frame',
             frame1:'.td-up',
             frame2:'.td-down',
-            frameL:'.td-ud-line',
+            frameL:'.td-line',
             callback:function(event){
             }
             });
@@ -82,7 +82,7 @@
             mainFrame:'#td-ud-frame2',
             frame1:'.td-up',
             frame2:'.td-down',
-            frameL:'.td-ud-line',
+            frameL:'.td-line',
             callback:function(event){
             }
             });
