@@ -9,11 +9,7 @@ html,body{width: 100%;height: 100%;}
 /**
  * 左右拖动
  */
-.td-frame{position: relative;height: 300px;}
-
-.td-left,.td-right,.td-line{position: absolute;top: 0px;height: 100%;}
-.td-left{left:0px;background: #D8D8D8;}
-.td-right{right: 0px;width: 500px;background: #D8D8D8;}
+.td-frame{height: 300px;background: #D8D8D8;}
 
 /**
  * 主次框架共用样式
