@@ -49,6 +49,7 @@ $(function() {
 				_t.drF1 = _tf.children(_t.conf.frame1);
 				_t.drF2 = _tf.children(_t.conf.frame2);
 				_t.drL = _tf.children(_t.conf.frameL);
+				_t.drF.addClass('drag-m-frame');
 				_t.drF1.addClass('drag-f1');
 				_t.drF2.addClass('drag-f2');
 				_t.drL.addClass('drag-line');
@@ -108,14 +109,14 @@ $(function() {
 				$(document).mouseup(function(event) {
 					_t.mDown = false;
 					_t.mIng = false;
-					$('#td_frame_bg').remove();
+					$('#drag_frame_bg').remove();
 				});
 			},
 			addShade: function() {
 				var _t = this;
 				var c = _t.conf;
-				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
-				var bg = $('#td_frame_bg');
+				$('body').append('<div id="drag_frame_bg" class="drag_frame_bg"></div>')
+				var bg = $('#drag_frame_bg');
 				bg.css({
 					'height': $(document).height() + 'px',
 					'width': $(document).width() + 'px'
