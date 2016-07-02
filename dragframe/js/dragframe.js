@@ -6,12 +6,12 @@ $(function() {
 		"use strict";
 		var c = function(conf) {
 			this.conf = {
-				type: 1,
-				mainFrame: '#td-frame',
-				frameL: '.td-line',
-				frame1: '.td-left',
-				frame2: '.td-right',
-				callback: null
+				type: 1, //框架类型1左右  2上下
+				mainFrame: '#td-frame', //主框架的容器选择器
+				frameL: '.td-line', //推动线的选择器
+				frame1: '.td-left', //第一个框架选择器
+				frame2: '.td-right', //第二个框架的选择器
+				callback: null //拖动过程中的回调
 
 			};
 			for (a in conf) {
@@ -107,9 +107,7 @@ $(function() {
 							var lwidth = _x + le.width();
 							le.width(lw);
 							ri.width(rw);
-							li.css({
-								'left': lw + 'px'
-							});
+							li.css('left', lw + 'px');
 							_t.mIng = false;
 						}
 					} else {
@@ -124,9 +122,7 @@ $(function() {
 							}
 							le.height(uh);
 							ri.height(dh);
-							li.css({
-								'top': uh + 'px'
-							});
+							li.css('top', uh + 'px');
 							_t.mIng = false;
 						}
 					}
