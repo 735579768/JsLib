@@ -16,9 +16,9 @@ html,body{width: 100%;height: 100%;}
 .td-right{right: 0px;width: 500px;background: #D8D8D8;}
 
 .drag-lr-frame{position: relative;}
-.drag-lr-frame .drag-f1{top:0px;left:0px;float: left;}
-.drag-lr-frame .drag-f2{top:0px;right: 0px;float: right;}
-.drag-lr-frame .drag-line{height: 100%;width: 15px;left: 500px;cursor: move;z-index: 99999999;background: #fff;position: absolute;top: 0px;z-index: 99;}
+.drag-lr-frame .drag-f1{top:0px;left:0px;float: left;position: absolute;}
+.drag-lr-frame .drag-f2{top:0px;right: 0px;float: right;position: absolute;}
+.drag-lr-frame .drag-line{height: 100%;width: 15px;left: 500px;cursor: move;z-index: 99999999;background: #fff;position: absolute;top: 0px;}
 .drag-lr-frame .drag-line .drag-line-s1,.drag-lr-frame .drag-line .drag-line-s2,.drag-lr-frame .drag-line .drag-line-s3{height:20px;background: #ccc;width: 1px; vertical-align: middle;position: absolute;top: 50%; margin-top: -10px;}
 .drag-lr-frame .drag-line .drag-line-s1{left: 4px;}
 .drag-lr-frame .drag-line .drag-line-s2{left: 8px;}
@@ -31,9 +31,9 @@ html,body{width: 100%;height: 100%;}
 .drag-down{bottom: 0px;background: #D8D8D8;}
 
 .drag-ud-frame{position: relative;}
-.drag-ud-frame .drag-f1{left: 0px; top:0px;}
-.drag-ud-frame .drag-f2{left:0px; bottom: 0px;}
-.drag-ud-frame .drag-line{height:15px;cursor: move;z-index: 99999999;background: #fff;width: 100%;position: absolute; left: 0px;z-index: 99;}
+.drag-ud-frame .drag-f1{left: 0px; top:0px;position: absolute;}
+.drag-ud-frame .drag-f2{left:0px; bottom: 0px;position: absolute;}
+.drag-ud-frame .drag-line{height:15px;cursor: move;z-index: 99999999;background: #fff;width: 100%;position: absolute; left: 0px;}
 .drag-ud-frame .drag-line .drag-line-s1,.drag-ud-frame .drag-line .drag-line-s2,.drag-ud-frame .drag-line .drag-line-s3{width: 20px; background: #ccc;height: 1px; vertical-align: middle;position: absolute;left: 50%; margin-left: -10px;}
 .drag-ud-frame .drag-line .drag-line-s1{top: 4px;}
 .drag-ud-frame .drag-line .drag-line-s2{top: 8px;}
