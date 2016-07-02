@@ -4,16 +4,27 @@ $(function() {
 	 */
 	! function(a, b) {
 		"use strict";
-		var c = function(id, callback) {
-			this.tdFrame = null;
-			this.tdLeft = null;
-			this.tdRight = null;
-			this.tdLine = null;
-			this.moveIng = false;
-			this.mouseDown = false;
+		var c = function(conf) {
+			this.conf = {
+				type: 1,
+				mainFrame: '#td-frame',
+				frameL: '.td-line',
+				frame1: '.td-left',
+				frame2: '.td-right',
+				callback: null
+
+			};
+			for (a in conf) {
+				this.conf[a] = conf[a];
+			}
+			this.drF = null;
+			this.drF1 = null;
+			this.drF2 = null;
+			this.drL = null;
+			this.mIng = false;
+			this.mDown = false;
 			this.zuoBiao = [0, 0];
-			this.callback = callback;
-			this.init(id);
+			this.init(conf['mainFrame']);
 		};
 		c.prototype = {
 			path: function() {
@@ -24,188 +35,107 @@ $(function() {
 			}(),
 			init: function(id) {
 				var _t = this;
-				var _tf = _t.tdFrame = $(id);
+				var _tf = _t.drF = $(id);
 
-				_t.tdLeft = _tf.children('.td-left');
-				_t.tdRight = _tf.children('.td-right');
-				_t.tdLine = _tf.children('.td-line');
+				_t.drF1 = _tf.children(_t.conf.frame1);
+				_t.drF2 = _tf.children(_t.conf.frame2);
+				_t.drL = _tf.children(_t.conf.frameL);
 				_t.initFrameSize();
 				_t.bindMove();
 				return _t;
 			},
 			initFrameSize: function() {
 				var _t = this;
-				var parW = _t.tdFrame.width();
-				_t.tdLeft.width(parW / 2);
-				_t.tdRight.width(parW / 2 - _t.tdLine.width());
-				_t.tdLine.css({
-					'left': parW / 2 + 'px',
-					// 'height': _t.tdFrame.height() + 'px'
-				});
+				if (_t.conf.type == 1) {
+					var parW = _t.drF.width();
+					_t.drF1.width(parW / 2);
+					_t.drF2.width(parW / 2 - _t.drL.width());
+					_t.drL.css({
+						'left': parW / 2 + 'px'
+					});
+				} else {
+					var parH = _t.drF.height();
+					_t.drF1.height(parH / 2);
+					_t.drF2.height(parH / 2 - _t.drL.height());
+					_t.drL.css({
+						'top': parH / 2 + 'px'
+					});
+				}
+
 			},
 			/**
 			 * 绑定推动事件
 			 */
 			bindMove: function() {
-				// debugger;
 				var _t = this;
-				var parW = _t.tdFrame.width();
-				var le = _t.tdLeft;
-				var li = _t.tdLine;
-				var ri = _t.tdRight;
-				li.mousedown(function(event) {
-					_t.mouseDown = true;
+				_t.drL.mousedown(function(event) {
+					_t.mDown = true;
 					_t.zuoBiao[0] = event.clientX;
+					_t.zuoBiao[1] = event.clientY;
 					_t.addShade();
 				});
 				$(document).mouseup(function(event) {
-					_t.mouseDown = false;
-					_t.moveIng = false;
+					_t.mDown = false;
+					_t.mIng = false;
 					$('#td_frame_bg').remove();
 				});
 			},
 			addShade: function() {
 				var _t = this;
-				var parW = _t.tdFrame.width();
-				var le = _t.tdLeft;
-				var li = _t.tdLine;
-				var ri = _t.tdRight;
 				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
 				var bg = $('#td_frame_bg');
 				bg.css({
 					'height': $(document).height() + 'px',
 					'width': $(document).width() + 'px'
 				});
-				bg.mousemove(function(event) {
-					_t.callback && _t.callback(event);
-					var _x = event.clientX - _t.zuoBiao[0];
-					_t.zuoBiao[0] = event.clientX;
-					if (_t.mouseDown && !_t.moveIng) {
-						_t.moveIng = true;
-						var lw = _x + le.width();
-						var rw = ri.width() - _x;
-						if (lw <= 0 || rw <= 0) {
-							return;
-						}
+				var le = _t.drF1;
+				var li = _t.drL;
+				var ri = _t.drF2;
 
-						var lwidth = _x + le.width();
-						le.width(lw);
-						li.css({
-							'left': lw + 'px',
-							// 'height': _t.tdFrame.height() + 'px'
-						});
-						ri.width(rw);
-						// console.log(_t.zuoBiao);
-						// console.log(_x);
-						_t.moveIng = false;
+				bg.mousemove(function(event) {
+					_t.conf.callback && _t.conf.callback(event);
+					if (_t.conf.type == 1) {
+						var _x = event.clientX - _t.zuoBiao[0];
+						_t.zuoBiao[0] = event.clientX;
+						if (_t.mDown && !_t.mIng) {
+							_t.mIng = true;
+							var lw = _x + le.width();
+							var rw = ri.width() - _x;
+							if (lw <= 0 || rw <= 0) {
+								return;
+							}
+							var lwidth = _x + le.width();
+							le.width(lw);
+							ri.width(rw);
+							li.css({
+								'left': lw + 'px'
+							});
+							_t.mIng = false;
+						}
+					} else {
+						var _y = event.clientY - _t.zuoBiao[1];
+						_t.zuoBiao[1] = event.clientY;
+						if (_t.mDown && !_t.mIng) {
+							_t.mIng = true;
+							var uh = le.height() + _y;
+							var dh = ri.height() - _y;
+							if (uh <= 0 || dh <= 0) {
+								return;
+							}
+							le.height(uh);
+							ri.height(dh);
+							li.css({
+								'top': uh + 'px'
+							});
+							_t.mIng = false;
+						}
 					}
 				});
 			}
 
 		};
-		a.lr_tuodong = function(id, callback) {
-			return new c(id, callback);
+		a.dragFrame = function(conf) {
+			return new c(conf);
 		};
 	}(window);
-
-	/**
-	 * 上下拖动类
-	 */
-	! function(a, b) {
-		"use strict";
-		var c = function(id, callback) {
-			this.tdFrame = null;
-			this.tdUp = null;
-			this.tdDown = null;
-			this.tdLine = null;
-			this.mouseDown = false;
-			this.zuoBiao = [0, 0];
-			this.callback = callback;
-			this.moveIng = false;
-			this.init(id);
-		};
-		c.prototype = {
-			init: function(id) {
-				var _t = this;
-				var _tf = _t.tdFrame = $(id);
-				_t.tdUp = _tf.children('.td-up');
-				_t.tdDown = _tf.children('.td-down');
-				_t.tdLine = _tf.children('.td-ud-line');
-				_t.initFrameSize();
-				_t.bindMove();
-				return _t;
-			},
-			initFrameSize: function() {
-				var _t = this;
-				var parH = _t.tdFrame.height();
-				_t.tdUp.height(parH / 2);
-				_t.tdDown.height(parH / 2 - _t.tdLine.height());
-				_t.tdLine.css({
-					'top': parH / 2 + 'px',
-					// 'width': _t.tdFrame.width() + 'px'
-				});
-			},
-			/**
-			 * 绑定推动事件
-			 */
-			bindMove: function() {
-				// debugger;
-				var _t = this;
-				var parH = _t.tdFrame.height();
-				var le = _t.tdUp;
-				var li = _t.tdLine;
-				var ri = _t.tdDown;
-				li.mousedown(function(event) {
-					_t.mouseDown = true;
-					_t.zuoBiao[1] = event.clientY;
-					_t.addShade();
-				});
-				$(document).mouseup(function(event) {
-					_t.mouseDown = false;
-					_t.moveIng = false;
-					$('#td_frame_bg').remove();
-				});
-			},
-			addShade: function() {
-				var _t = this;
-				var parH = _t.tdFrame.height();
-				var le = _t.tdUp;
-				var li = _t.tdLine;
-				var ri = _t.tdDown;
-				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
-				var bg = $('#td_frame_bg');
-				bg.css({
-					'height': $(document).height() + 'px',
-					'width': $(document).width() + 'px'
-				});
-
-				bg.mousemove(function(event) {
-					_t.callback && _t.callback(event);
-					var _y = event.clientY - _t.zuoBiao[1];
-					_t.zuoBiao[1] = event.clientY;
-					if (_t.mouseDown && !_t.moveIng) {
-						_t.moveIng = true;
-						var uh = le.height() + _y;
-						var dh = ri.height() - _y;
-						// console.log(dh);
-						if (uh <= 0 || dh <= 0) {
-							return;
-						}
-						le.height(uh);
-						ri.height(dh);
-						li.css({
-							'top': uh + 'px',
-							// 'width': _t.tdFrame.width() + 'px'
-						});
-						_t.moveIng = false;
-					}
-				});
-			}
-
-		};
-		a.ud_tuodong = function(id, callback) {
-			return new c(id, callback);
-		};
-	}(window);
-
 });

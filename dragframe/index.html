@@ -59,16 +59,35 @@
     <script type="text/javascript">
     $(function() {
 
-        var obj = lr_tuodong('#td-frame', function(event) {
-            //console.log(event);
-        });
-        var obj1 = ud_tuodong('#td-ud-frame', function(event) {
-            //console.log(event);
-        });
-        var obj1 = ud_tuodong('#td-ud-frame2', function(event) {
-            //console.log(event);
-        });
-        console.log(obj.path);
+        var obj = dragFrame({
+            type:1,
+            mainFrame:'#td-frame',
+            frame1:'.td-left',
+            frame2:'.td-right',
+            frameL:'.td-line',
+            callback:function(event){
+            }
+            });
+                var obj1 = dragFrame({
+            type:2,
+            mainFrame:'#td-ud-frame',
+            frame1:'.td-up',
+            frame2:'.td-down',
+            frameL:'.td-ud-line',
+            callback:function(event){
+            }
+            });
+         var obj2 = dragFrame({
+            type:2,
+            mainFrame:'#td-ud-frame2',
+            frame1:'.td-up',
+            frame2:'.td-down',
+            frameL:'.td-ud-line',
+            callback:function(event){
+            }
+            });
+
+        console.log(obj);
     });
     </script>
 </body>
