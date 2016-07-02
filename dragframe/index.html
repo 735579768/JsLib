@@ -59,31 +59,34 @@
     <script type="text/javascript">
     $(function() {
 
-        var obj = dragFrame({
+        var obj = dragFrame.init({
             type:1,
             mainFrame:'#td-frame',
             frame1:'.td-left',
             frame2:'.td-right',
             frameL:'.td-line',
             callback:function(event){
+dragFrame.resetSize();
             }
             });
-                var obj1 = dragFrame({
+                var obj1 = dragFrame.init({
             type:1,
             mainFrame:'#td-ud-frame',
             frame1:'.td-up',
             frame2:'.td-down',
             frameL:'.td-line',
             callback:function(event){
+                dragFrame.resetSize();
             }
             });
-         var obj2 = dragFrame({
+         var obj2 = dragFrame.init({
             type:2,
             mainFrame:'#td-ud-frame2',
             frame1:'.td-up',
             frame2:'.td-down',
             frameL:'.td-line',
             callback:function(event){
+                dragFrame.resetSize();
             }
             });
 

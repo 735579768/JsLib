@@ -4,6 +4,15 @@ $(function() {
 	 */
 	! function(a, b) {
 		"use strict";
+		var d = {
+			objlist: [],
+			//当多个框架嵌套的时候需要在回调函数中执行drag.resetSize();同步其它框架大小
+			resetSize: function() {
+				for (a in this.objlist) {
+					this.objlist[a].resetSize();
+				}
+			}
+		};
 		var c = function(conf) {
 			this.conf = {
 				type: 1, //框架类型1左右  2上下
@@ -40,20 +49,34 @@ $(function() {
 				_t.drF1 = _tf.children(_t.conf.frame1);
 				_t.drF2 = _tf.children(_t.conf.frame2);
 				_t.drL = _tf.children(_t.conf.frameL);
+				_t.drF1.addClass('drag-f1');
+				_t.drF2.addClass('drag-f2');
+				_t.drL.addClass('drag-line');
 				_t.initFrameSize();
 				_t.bindMove();
 				return _t;
 			},
+			resetSize: function() {
+				var _t = this;
+				if (_t.conf.type == 1) {
+					var left = parseFloat(_t.drL.css('left'));
+					var parW = _t.drF.width();
+					_t.drF1.width(left);
+					_t.drF2.width(parW - left - _t.drL.outerWidth());
+				} else {
+					var top = parseFloat(_t.drL.css('top'));
+					var parH = _t.drF.height();
+					_t.drF1.height(top);
+					_t.drF2.height(parH - top - _t.drL.outerHeight());
+				}
+			},
 			initFrameSize: function() {
 				var _t = this;
-				_t.drF1.addClass('drag-f1');
-				_t.drF2.addClass('drag-f2');
-				_t.drL.addClass('drag-line');
 				if (_t.conf.type == 1) {
 					_t.drF.addClass('drag-lr-frame')
 					var parW = _t.drF.width();
 					_t.drF1.width(parW / 2);
-					_t.drF2.width(parW / 2 - _t.drL.width());
+					_t.drF2.width(parW / 2 - _t.drL.outerWidth());
 					_t.drL.css({
 						'left': parW / 2 + 'px',
 					});
@@ -62,7 +85,7 @@ $(function() {
 					_t.drF.addClass('drag-ud-frame')
 					var parH = _t.drF.height();
 					_t.drF1.height(parH / 2);
-					_t.drF2.height(parH / 2 - _t.drL.height());
+					_t.drF2.height(parH / 2 - _t.drL.outerHeight());
 					_t.drL.css({
 						'top': parH / 2 + 'px',
 					});
@@ -139,8 +162,15 @@ $(function() {
 			}
 
 		};
-		a.dragFrame = function(conf) {
-			return new c(conf);
+		a.dragFrame = {
+			resetSize: function() {
+				d.resetSize();
+			},
+			init: function(conf) {
+				var o = new c(conf);
+				d.objlist.push(o);
+				return o;
+			}
 		};
 	}(window);
 });
