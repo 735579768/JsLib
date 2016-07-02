@@ -17,7 +17,7 @@ $(function() {
 			this.conf = {
 				type: 1, //框架类型1左右  2上下
 				mainFrame: '#td-frame', //主框架的容器选择器
-				bili: [2, 3], //框架初始化比例
+				bili: [1, 1], //框架初始化比例
 				minSize: 50, //框架最小的宽度和高度
 				frameL: '.td-line', //推动线的选择器
 				frame1: '.td-left', //第一个框架选择器
