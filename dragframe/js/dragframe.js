@@ -17,6 +17,8 @@ $(function() {
 			this.conf = {
 				type: 1, //框架类型1左右  2上下
 				mainFrame: '#td-frame', //主框架的容器选择器
+				bili: [2, 3], //框架初始化比例
+				minSize: 50, //框架最小的宽度和高度
 				frameL: '.td-line', //推动线的选择器
 				frame1: '.td-left', //第一个框架选择器
 				frame1Size: 0, //第一个框架默认宽或高(左右框架为宽,下下框架为高)
@@ -35,7 +37,7 @@ $(function() {
 			this.mIng = false;
 			this.mDown = false;
 			this.zuoBiao = [0, 0];
-			this.drF1BL = 0; //第一个框架占的比例
+			this.drF1BL = this.conf.bili[0] / (this.conf.bili[0] + this.conf.bili[1]); //第一个框架占的比例
 			this.init(conf['mainFrame']);
 		};
 		c.prototype = {
@@ -61,7 +63,6 @@ $(function() {
 				} else {
 					_t.drF.addClass('drag-ud-frame');
 				}
-				_t.drF1BL = 0.5;
 				_t.initFrameSize();
 				_t.bindMove();
 				return _t;
@@ -69,7 +70,6 @@ $(function() {
 			initFrameSize: function() {
 				var _t = this;
 				if (_t.conf.type == 1) {
-
 					var lW = _t.drL.outerWidth();
 					var parW = _t.drF.width() - lW;
 					var sW = _t.drF1.width() + _t.drF2.width();
@@ -136,7 +136,7 @@ $(function() {
 							_t.mIng = true;
 							var lw = _x + f1.width();
 							var rw = f2.width() - _x;
-							if (lw <= 0 || rw <= 0) {
+							if (lw <= c.minSize || rw <= c.minSize) {
 								return;
 							}
 							var lwidth = _x + f1.width();
@@ -154,7 +154,7 @@ $(function() {
 							_t.mIng = true;
 							var uh = f1.height() + _y;
 							var dh = f2.height() - _y;
-							if (uh <= 0 || dh <= 0) {
+							if (uh <= c.minSize || dh <= c.minSize) {
 								return;
 							}
 							f1.height(uh);
