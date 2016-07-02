@@ -35,6 +35,7 @@ $(function() {
 			this.mIng = false;
 			this.mDown = false;
 			this.zuoBiao = [0, 0];
+			this.drF1BL = 0; //第一个框架占的比例
 			this.init(conf['mainFrame']);
 		};
 		c.prototype = {
@@ -74,7 +75,7 @@ $(function() {
 					_t.drL.css('left', f1w + 'px');
 					_t.drF1.width(f1w);
 					_t.drF2.width(parW - f1w - lW);
-					console.log([bili, parW, f1w, parW - f1w - lW]);
+					console.log(_t);
 				} else {
 					var parH = _t.drF.height();
 					var lH = _t.drL.outerHeight();
@@ -176,6 +177,8 @@ $(function() {
 							var lwidth = _x + f1.width();
 							f1.width(lw);
 							f2.width(rw);
+							var bl = ((lw / (lw + rw)) + '');
+							_t.drF1BL = parseFloat(bl.substring(0, bl.lastIndexOf('.') + 2));
 							li.css('left', lw + 'px');
 							_t.mIng = false;
 						}
