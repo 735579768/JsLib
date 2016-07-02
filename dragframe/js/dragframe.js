@@ -19,7 +19,9 @@ $(function() {
 				mainFrame: '#td-frame', //主框架的容器选择器
 				frameL: '.td-line', //推动线的选择器
 				frame1: '.td-left', //第一个框架选择器
+				frame1Size:0,//第一个框架默认宽或高(左右框架为宽,下下框架为高)
 				frame2: '.td-right', //第二个框架的选择器
+				frame2Size:0,//第二个框架默认宽或高(左右框架为宽,下下框架为高)
 				callback: null //拖动过程中的回调
 
 			};
