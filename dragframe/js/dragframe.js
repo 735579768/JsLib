@@ -82,31 +82,32 @@ $(function() {
 			},
 			addShade: function() {
 				var _t = this;
+				var c=_t.conf;
 				$('body').append('<div id="td_frame_bg" class="td_frame_bg"></div>')
 				var bg = $('#td_frame_bg');
 				bg.css({
 					'height': $(document).height() + 'px',
 					'width': $(document).width() + 'px'
 				});
-				var le = _t.drF1;
+				var f1 = _t.drF1;
 				var li = _t.drL;
-				var ri = _t.drF2;
+				var f2 = _t.drF2;
 
 				bg.mousemove(function(event) {
-					_t.conf.callback && _t.conf.callback(event);
-					if (_t.conf.type == 1) {
+					(typeof(c.callback) == 'function') && c.callback(event);
+					if (c.type == 1) {
 						var _x = event.clientX - _t.zuoBiao[0];
 						_t.zuoBiao[0] = event.clientX;
 						if (_t.mDown && !_t.mIng) {
 							_t.mIng = true;
-							var lw = _x + le.width();
-							var rw = ri.width() - _x;
+							var lw = _x + f1.width();
+							var rw = f2.width() - _x;
 							if (lw <= 0 || rw <= 0) {
 								return;
 							}
-							var lwidth = _x + le.width();
-							le.width(lw);
-							ri.width(rw);
+							var lwidth = _x + f1.width();
+							f1.width(lw);
+							f2.width(rw);
 							li.css('left', lw + 'px');
 							_t.mIng = false;
 						}
@@ -115,13 +116,13 @@ $(function() {
 						_t.zuoBiao[1] = event.clientY;
 						if (_t.mDown && !_t.mIng) {
 							_t.mIng = true;
-							var uh = le.height() + _y;
-							var dh = ri.height() - _y;
+							var uh = f1.height() + _y;
+							var dh = f2.height() - _y;
 							if (uh <= 0 || dh <= 0) {
 								return;
 							}
-							le.height(uh);
-							ri.height(dh);
+							f1.height(uh);
+							f2.height(dh);
 							li.css('top', uh + 'px');
 							_t.mIng = false;
 						}
