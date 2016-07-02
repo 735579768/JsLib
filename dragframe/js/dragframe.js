@@ -76,11 +76,6 @@ $(function() {
 					_t.drF2.width(parW - f1w - lW);
 					console.log([bili, parW, f1w, parW - f1w - lW]);
 				} else {
-					// var top = parseFloat(_t.drL.css('top'));
-					// var parH = _t.drF.height();
-					// _t.drF1.height(top);
-					// _t.drF2.height(parH - top - _t.drL.outerHeight());
-
 					var parH = _t.drF.height();
 					var lH = _t.drL.outerHeight();
 					var sH = _t.drF1.height() + _t.drF2.height();
