@@ -17,7 +17,19 @@
         <div class="td-frame" id="td-frame">
             <div class="td-left">
                 <div class="acecls">
-                    框架左边内容
+                            <div class="td-frame" id="td-ud-frame3">
+            <div class="td-up">
+                框架上边内容
+            </div>
+            <div class="td-line">
+                <div class="drag-line-s1"></div>
+                <div class="drag-line-s2"></div>
+                <div class="drag-line-s3"></div>
+            </div>
+            <div class="td-down">
+                框架下边内容
+            </div>
+        </div>
                 </div>
             </div>
             <div class="td-line">
@@ -82,6 +94,16 @@ dragFrame.resetSize();
          var obj2 = dragFrame.init({
             type:2,
             mainFrame:'#td-ud-frame2',
+            frame1:'.td-up',
+            frame2:'.td-down',
+            frameL:'.td-line',
+            callback:function(event){
+                dragFrame.resetSize();
+            }
+            });
+                  var obj3 = dragFrame.init({
+            type:2,
+            mainFrame:'#td-ud-frame3',
             frame1:'.td-up',
             frame2:'.td-down',
             frameL:'.td-line',

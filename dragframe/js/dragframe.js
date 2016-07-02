@@ -19,9 +19,9 @@ $(function() {
 				mainFrame: '#td-frame', //主框架的容器选择器
 				frameL: '.td-line', //推动线的选择器
 				frame1: '.td-left', //第一个框架选择器
-				frame1Size:0,//第一个框架默认宽或高(左右框架为宽,下下框架为高)
+				frame1Size: 0, //第一个框架默认宽或高(左右框架为宽,下下框架为高)
 				frame2: '.td-right', //第二个框架的选择器
-				frame2Size:0,//第二个框架默认宽或高(左右框架为宽,下下框架为高)
+				frame2Size: 0, //第二个框架默认宽或高(左右框架为宽,下下框架为高)
 				callback: null //拖动过程中的回调
 
 			};
@@ -62,15 +62,37 @@ $(function() {
 			resetSize: function() {
 				var _t = this;
 				if (_t.conf.type == 1) {
-					var left = parseFloat(_t.drL.css('left'));
 					var parW = _t.drF.width();
-					_t.drF1.width(left);
-					_t.drF2.width(parW - left - _t.drL.outerWidth());
+					var lW = _t.drL.outerWidth();
+					var sW = _t.drF1.width() + _t.drF2.width();
+					if ((lW + sW) == parW) {
+						return;
+					}
+					var bl = ((_t.drF1.width() / sW) + '');
+					var bili = parseFloat(bl.substring(0, bl.lastIndexOf('.') + 2));
+					var f1w = parseInt(parW * bili);
+					_t.drL.css('left', f1w + 'px');
+					_t.drF1.width(f1w);
+					_t.drF2.width(parW - f1w - lW);
+					console.log([bili, parW, f1w, parW - f1w - lW]);
 				} else {
-					var top = parseFloat(_t.drL.css('top'));
+					// var top = parseFloat(_t.drL.css('top'));
+					// var parH = _t.drF.height();
+					// _t.drF1.height(top);
+					// _t.drF2.height(parH - top - _t.drL.outerHeight());
+
 					var parH = _t.drF.height();
-					_t.drF1.height(top);
-					_t.drF2.height(parH - top - _t.drL.outerHeight());
+					var lH = _t.drL.outerHeight();
+					var sH = _t.drF1.height() + _t.drF2.height();
+					if ((lH + sH) == parH) {
+						return;
+					}
+					var bl = ((_t.drF1.height() / sW) + '');
+					var bili = parseFloat(bl.substring(0, bl.lastIndexOf('.') + 2));
+					var f1h = parseInt(parH * bili);
+					_t.drL.css('left', f1h + 'px');
+					_t.drF1.height(f1h);
+					_t.drF2.height(parH - f1h - lH);
 				}
 			},
 			initFrameSize: function() {
@@ -83,6 +105,14 @@ $(function() {
 					_t.drL.css({
 						'left': parW / 2 + 'px',
 					});
+					_t.drF1.css({
+						'left': '0px',
+						'top': '0px',
+					});
+					_t.drF2.css({
+						'right': '0px',
+						'top': '0px',
+					});
 
 				} else {
 					_t.drF.addClass('drag-ud-frame')
@@ -91,6 +121,14 @@ $(function() {
 					_t.drF2.height(parH / 2 - _t.drL.outerHeight());
 					_t.drL.css({
 						'top': parH / 2 + 'px',
+					});
+					_t.drF1.css({
+						'left': '0px',
+						'top': '0px',
+					});
+					_t.drF2.css({
+						'left': '0px',
+						'bottom': '0px',
 					});
 
 				}
@@ -128,11 +166,12 @@ $(function() {
 				var f2 = _t.drF2;
 
 				bg.mousemove(function(event) {
-					(typeof(c.callback) == 'function') && c.callback(event);
+
 					if (c.type == 1) {
 						var _x = event.clientX - _t.zuoBiao[0];
 						_t.zuoBiao[0] = event.clientX;
 						if (_t.mDown && !_t.mIng) {
+							(typeof(c.callback) == 'function') && c.callback(event);
 							_t.mIng = true;
 							var lw = _x + f1.width();
 							var rw = f2.width() - _x;
@@ -149,6 +188,7 @@ $(function() {
 						var _y = event.clientY - _t.zuoBiao[1];
 						_t.zuoBiao[1] = event.clientY;
 						if (_t.mDown && !_t.mIng) {
+							(typeof(c.callback) == 'function') && c.callback(event);
 							_t.mIng = true;
 							var uh = f1.height() + _y;
 							var dh = f2.height() - _y;
