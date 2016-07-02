@@ -69,13 +69,12 @@ $(function() {
 					if ((lW + sW) == parW) {
 						return;
 					}
-					var bl = ((_t.drF1.width() / sW) + '');
-					var bili = parseFloat(bl.substring(0, bl.lastIndexOf('.') + 2));
-					var f1w = parseInt(parW * bili);
+					// console.log(_t.drF1BL);
+					var f1w = parseInt(parW * _t.drF1BL);
 					_t.drL.css('left', f1w + 'px');
 					_t.drF1.width(f1w);
 					_t.drF2.width(parW - f1w - lW);
-					console.log(_t);
+					// console.log(_t);
 				} else {
 					var parH = _t.drF.height();
 					var lH = _t.drL.outerHeight();
@@ -83,9 +82,7 @@ $(function() {
 					if ((lH + sH) == parH) {
 						return;
 					}
-					var bl = ((_t.drF1.height() / sW) + '');
-					var bili = parseFloat(bl.substring(0, bl.lastIndexOf('.') + 2));
-					var f1h = parseInt(parH * bili);
+					var f1h = parseInt(parH * _t.drF1BL);
 					_t.drL.css('left', f1h + 'px');
 					_t.drF1.height(f1h);
 					_t.drF2.height(parH - f1h - lH);
@@ -93,6 +90,7 @@ $(function() {
 			},
 			initFrameSize: function() {
 				var _t = this;
+				_t.drF1BL = 0.5;
 				if (_t.conf.type == 1) {
 					_t.drF.addClass('drag-lr-frame')
 					var parW = _t.drF.width();
@@ -177,8 +175,7 @@ $(function() {
 							var lwidth = _x + f1.width();
 							f1.width(lw);
 							f2.width(rw);
-							var bl = ((lw / (lw + rw)) + '');
-							_t.drF1BL = parseFloat(bl.substring(0, bl.lastIndexOf('.') + 2));
+							_t.drF1BL = (lw / (lw + rw));
 							li.css('left', lw + 'px');
 							_t.mIng = false;
 						}
@@ -195,6 +192,7 @@ $(function() {
 							}
 							f1.height(uh);
 							f2.height(dh);
+							_t.drF1BL = (uh / (uh + dh));
 							li.css('top', uh + 'px');
 							_t.mIng = false;
 						}
