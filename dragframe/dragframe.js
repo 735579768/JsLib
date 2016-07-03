@@ -171,16 +171,16 @@
 				return o;
 			}
 		};
-		var csspath = function() {
-			var a = document.scripts;
-			var b = a[a.length - 1];
-			var c = b.src;
-			return c.substring(0, c.lastIndexOf("/") + 1);
-		}();
-		// console.log(csspath);
-		var cssdom = document.createElement('link');
-		cssdom.href = csspath + '/css/dragframe.css';
-		cssdom.rel = 'stylesheet';
-		cssdom.type = 'text/css';
-		document.getElementsByTagName('head')[0].appendChild(cssdom);
+	// var csspath = function() {
+	// 	var a = document.scripts;
+	// 	var b = a[a.length - 1];
+	// 	var c = b.src;
+	// 	return c.substring(0, c.lastIndexOf("/") + 1);
+	// }();
+	// // console.log(csspath);
+	// var cssdom = document.createElement('link');
+	// cssdom.href = csspath + '/css/dragframe.css';
+	// cssdom.rel = 'stylesheet';
+	// cssdom.type = 'text/css';
+	// document.getElementsByTagName('head')[0].appendChild(cssdom);
 	}(window);
