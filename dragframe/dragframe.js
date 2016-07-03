@@ -1,4 +1,3 @@
-$(function() {
 	/**
 	 * 左右拖动类
 	 */
@@ -41,12 +40,6 @@ $(function() {
 			this.init(conf['mainFrame']);
 		};
 		c.prototype = {
-			path: function() {
-				var a = document.scripts;
-				var b = a[a.length - 1];
-				var c = b.src;
-				return c.substring(0, c.lastIndexOf("/") + 1);
-			}(),
 			init: function(id) {
 				var _t = this;
 				var _tf = _t.drF = $(id);
@@ -178,5 +171,16 @@ $(function() {
 				return o;
 			}
 		};
+		var csspath = function() {
+			var a = document.scripts;
+			var b = a[a.length - 1];
+			var c = b.src;
+			return c.substring(0, c.lastIndexOf("/") + 1);
+		}();
+		// console.log(csspath);
+		var cssdom = document.createElement('link');
+		cssdom.href = csspath + '/css/dragframe.css';
+		cssdom.rel = 'stylesheet';
+		cssdom.type = 'text/css';
+		document.getElementsByTagName('head')[0].appendChild(cssdom);
 	}(window);
-});
