@@ -4,22 +4,64 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>拖动框架</title>
-<style type="text/css">
+    <style type="text/css">
     /* CSS Document */
-body,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;font-family:Microsoft Yahei,Arial;}
-fieldset,img{border:0;-webkit-font-smoothing:antialiased;}
 
-html,body{width: 100%;height: 100%;}
+    body,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    code,
+    form,
+    fieldset,
+    legend,
+    input,
+    button,
+    textarea,
+    p,
+    blockquote,
+    th,
+    td {
+        margin: 0;
+        padding: 0;
+        font-family: Microsoft Yahei, Arial;
+    }
 
+    fieldset,
+    img {
+        border: 0;
+        -webkit-font-smoothing: antialiased;
+    }
 
-.container{padding:10px 0px;}
-/**
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        padding: 10px 0px;
+    }
+    /**
  * 左右拖动
  */
-.td-frame{height: 300px;background: #D8D8D8;display: block;}
-</style>
 
-
+    .td-frame {
+        height: 300px;
+        background: #D8D8D8;
+        display: block;
+    }
+    </style>
 </head>
 
 <body>
@@ -27,19 +69,19 @@ html,body{width: 100%;height: 100%;}
         <div class="td-frame" id="td-frame">
             <div class="td-left">
                 <div class="acecls">
-                            <div class="td-frame" id="td-ud-frame3">
-            <div class="td-up">
-                框架上边内容
-            </div>
-            <div class="td-line">
-                <div class="drag-line-s1"></div>
-                <div class="drag-line-s2"></div>
-                <div class="drag-line-s3"></div>
-            </div>
-            <div class="td-down">
-                框架下边内容
-            </div>
-        </div>
+                    <div class="td-frame" id="td-ud-frame3">
+                        <div class="td-up">
+                            框架上边内容
+                        </div>
+                        <div class="td-line">
+                            <div class="drag-line-s1"></div>
+                            <div class="drag-line-s2"></div>
+                            <div class="drag-line-s3"></div>
+                        </div>
+                        <div class="td-down">
+                            框架下边内容
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="td-line">
@@ -85,45 +127,45 @@ html,body{width: 100%;height: 100%;}
     $(function() {
 
         var obj = dragFrame.init({
-            type:1,
-            mainFrame:'#td-frame',
-            frame1:'.td-left',
-            frame2:'.td-right',
-            frameL:'.td-line',
-            callback:function(event){
-dragFrame.resetSize();
-            }
-            });
-                var obj1 = dragFrame.init({
-            type:1,
-            mainFrame:'#td-ud-frame',
-            frame1:'.td-up',
-            frame2:'.td-down',
-            frameL:'.td-line',
-            callback:function(event){
+            type: 1,
+            mainFrame: '#td-frame',
+            frame1: '.td-left',
+            frame2: '.td-right',
+            frameL: '.td-line',
+            callback: function(event) {
                 dragFrame.resetSize();
             }
-            });
-         var obj2 = dragFrame.init({
-            type:2,
-            mainFrame:'#td-ud-frame2',
-            frame1:'.td-up',
-            frame2:'.td-down',
-            frameL:'.td-line',
-            callback:function(event){
+        });
+        var obj1 = dragFrame.init({
+            type: 1,
+            mainFrame: '#td-ud-frame',
+            frame1: '.td-up',
+            frame2: '.td-down',
+            frameL: '.td-line',
+            callback: function(event) {
                 dragFrame.resetSize();
             }
-            });
-                  var obj3 = dragFrame.init({
-            type:2,
-            mainFrame:'#td-ud-frame3',
-            frame1:'.td-up',
-            frame2:'.td-down',
-            frameL:'.td-line',
-            callback:function(event){
+        });
+        var obj2 = dragFrame.init({
+            type: 2,
+            mainFrame: '#td-ud-frame2',
+            frame1: '.td-up',
+            frame2: '.td-down',
+            frameL: '.td-line',
+            callback: function(event) {
                 dragFrame.resetSize();
             }
-            });
+        });
+        var obj3 = dragFrame.init({
+            type: 2,
+            mainFrame: '#td-ud-frame3',
+            frame1: '.td-up',
+            frame2: '.td-down',
+            frameL: '.td-line',
+            callback: function(event) {
+                dragFrame.resetSize();
+            }
+        });
 
         console.log(obj);
     });
