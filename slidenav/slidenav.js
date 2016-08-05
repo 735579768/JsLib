@@ -8,45 +8,45 @@
 		 */
 		init: function(id) {
 			var _t = this;
-			_t.scrollh = 0;
-			_t.seting = false;
-			_t.nav = $(id);
+			_t.a = 0;
+			_t.b = false;
+			_t.c = $(id);
 			$(document).scroll(function(event) {
-				if (!_t.seting) {
-					_t.seting = true;
-					var nav = _t.nav;
-					var navh = nav.outerHeight();
+				if (!_t.b) {
+					_t.b = true;
+					var d = _t.c;
+					var dh = d.outerHeight();
 					var wh = $(window).scrollTop();
-					if (wh > navh && (wh - _t.scrollh) > 0) {
+					if (wh > dh && (wh - _t.a) > 0) {
 						//向下滚动,隐藏导航
 
-						if (nav.css('top') == '0px') {
-							nav.stop(true).animate({
+						if (d.css('top') == '0px') {
+							d.stop(true).animate({
 								top: 5
 							}, 100, function() {
-								nav.stop(true).animate({
-									top: -navh
+								d.stop(true).animate({
+									top: -dh
 								}, 300, function() {
-									_t.seting = false;
+									_t.b = false;
 								});
 							});
 						} else {
-							_t.seting = false;
+							_t.b = false;
 						}
 					} else {
 						//向上滚动,显示导航
-						if (nav.css('top') == '0px') {
-							_t.seting = false;
+						if (d.css('top') == '0px') {
+							_t.b = false;
 						} else {
-							nav.stop(true).animate({
+							d.stop(true).animate({
 								top: 0
 							}, 300, function() {
-								_t.seting = false;
+								_t.b = false;
 							});
 						}
 
 					}
-					_t.scrollh = wh;
+					_t.a = wh;
 				} else {
 					return;
 				}
